@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+button {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 15px 0;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  background: #3bbb5b;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.login {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 20px;
+  background: #e9e9e9;
+  display: flex;
+  background-image: linear-gradient(to top right, #000008, #0008), url(images/telo.jpg);
+}
+
+.login .loginContainer {
+  padding: 60px;
+  margin: auto;
+  width: 100%;
+  max-width: 520px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(to top left, #000008, #0008),
+	url("images/wave.png");
+  
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+}
+.login .loginContainer a img{
+  height: 100px;
+}
+.login .loginContainer h2{
+	margin: 15px 0;
+	color: #fff;
+	font-size: 2.9rem;
+  text-align: center;
+  font-family: 'poppins', sans-serif;
+}
+
+.login .loginContainer label {
+  color: white;
+  margin: 14px 0;
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+ 
+}
+
+.login .loginContainer input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 19px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  letter-spacing: 1px;
+  border-radius: 15px;
+}
+
+.login .loginContainer .btnContainer {
+  width: 100%;
+  padding: 24px 0;
+ 
+}
+
+.login .loginContainer .btnContainer p {
+  margin: 14px 0 0 0;
+  text-align: right;
+  color: #fff;
+  
+}
+
+.login .loginContainer .btnContainer p span {
+  color: yellow;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: all 400ms ease-in-out;
+  
+}
+
+.login .loginContainer .btnContainer p span:hover {
+  color: red;
+}
+
+.login .loginContainer .errorMsg {
+  color: red;
+  font-size: 16px;
+}
+
+/*.homePage {
+  width: 100%;
+  min-height: 100vh;
+
+}
+
+.homePage nav {
+  background: #4f4d55;
+  margin: auto;
+  width: 100%;
+  padding: 10px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+.homePage nav h2 {
+  color: #fff;
+}
+
+.homePage nav button {
+  border: none;
+  outline: none;
+  width: 10%;
+  padding: 15px 0;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  background: #3b3dbb;
+  cursor: pointer;
+  border-radius: 25px;
+}
+.homePage nav Search input {
+
+  border: none;
+  outline: none;
+  width: auto;
+  padding: 15px 0;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 25px;
+ 
+}*/
