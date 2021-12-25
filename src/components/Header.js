@@ -1,15 +1,26 @@
 import styled from "styled-components";
+import { connect } from "react-redux";
+//import {handleLogOut} from "../App"
+import { signOutAPI } from "../actions";
+import React, { useState, useEffect } from "react";
+import fire from "../database/firebaseDb";
+import Job from "../components/Jobs";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const Header = (props) => {
+  const [currentUser, setCurrentUser] = useState("");
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+  }, []);
+  const { handleLogOut } = props;
   return (
     <Container>
-
-     <Img src="../../images/search_icon.jpg"/>
-
       <Content>
         <Logo>
           <a href="/home">
-            <img src="../images/home-logo.svg" alt="" />
+            <img src="/images/job-search.png" alt="" />
           </a>
         </Logo>
         <Search>
@@ -17,67 +28,67 @@ const Header = (props) => {
             <input type="text" placeholder="Search" />
           </div>
           <SearchIcon>
-            <img src='../images/search-icon.svg' />
+            <img src="/images/search-icon.svg" alt="" />
           </SearchIcon>
         </Search>
         <Nav>
           <NavListWrap>
             <NavList className="active">
-              <a>
-                <img src="images/nav-home.svg" />
+              <Link to="/">
+                <img src="/images/nav-home.svg" alt="" />
                 <span>Home</span>
-              </a>
+              </Link>
+            </NavList>
+
+            <NavList /*className="active"*/>
+              <Link to={`/job`}>
+                <img src="/images/nav-jobs.svg" alt="" />
+                <span>Emplois</span>
+              </Link>
             </NavList>
 
             <NavList>
-              <a>
-                <img src="images/nav-network.svg"  />
-                <span>My Network</span>
-              </a>
+              <Link to="/message">
+                <img src="/images/nav-messaging.svg" alt="" />
+                <span>Messages</span>
+              </Link>
+            </NavList>
+            <NavList>
+              <Link to="/profil">
+                <img src={currentUser.photoURL} alt=""  style={{height: "28px"}}  />
+                <span>Profil</span>
+              </Link>
             </NavList>
 
             <NavList>
-              <a>
-                <img src="images/nav-jobs.svg" />
-                <span>Jobs</span>
-              </a>
+              <Link to="/portfolio">
+
+                {currentUser && currentUser.photoURL ? (
+                  <img src={currentUser.photoURL} alt="" style={{height: "28px"}}  />
+                ) : (
+                  <img src="/images/user.svg" alt=""  style={{height: "28px"}} />
+                )}
+                <span>Portfolio</span>
+              </Link>
             </NavList>
 
-            <NavList>
-              <a>
-                <img src="images/nav-messaging.svg" />
-                <span>Messaging</span>
-              </a>
-            </NavList>
-
-            <NavList>
-              <a>
-                <img src="images/nav-notifications.svg"  />
-                <span>Notifications</span>
-              </a>
-            </NavList>
 
             <User>
-              <a>
-                <img src="images/user.svg"  />
+              <a href="">
+                {currentUser && currentUser.photoURL ? (
+                  <img src={currentUser.photoURL} alt="" />
+                ) : (
+                  <img src="/images/user.svg" alt="" />
+                )}
+
                 <span>Me</span>
-                <img src="images/down-icon.svg"  />
+                <img src="/images/down-icon.svg" alt="" />
               </a>
-
-              <SignOut>
-                <a>Sign Out</a>
+              <SignOut onClick={() => props.signOut()}>
+                <a /*href="/" onClick={handleLogOut}*/>Sign Out</a>
               </SignOut>
+              
             </User>
-
-            <Work>
-              <a>
-                <img src="images/nav-work.svg"  />
-                <span>
-                  Work
-                  <img src="images/down-icon.svg" />
-                </span>
-              </a>
-            </Work>
           </NavListWrap>
         </Nav>
       </Content>
@@ -86,19 +97,14 @@ const Header = (props) => {
 };
 
 const Container = styled.div`
-  background-color: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #ccc;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
   left: 0;
   padding: 0 24px;
   position: fixed;
   top: 0;
   width: 100vw;
   z-index: 100;
-`;
-
-const Img = styled.img`
-height: 50px;
-width: 50px;
 `;
 
 const Content = styled.div`
@@ -182,6 +188,20 @@ const NavListWrap = styled.ul`
     }
   }
 `;
+/*const Link= styled.li`
+   align-items: center;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 400;
+    justify-content: center;
+    line-height: 1.5;
+    min-height: 52px;
+    min-width: 80px;
+    position: relative;
+    text-decoration: none;
+`;*/
 
 const NavList = styled.li`
   display: flex;
@@ -241,6 +261,7 @@ const User = styled(NavList)`
     height: 24px;
     border-radius: 50%;
   }
+
   span {
     display: flex;
     align-items: center;
@@ -258,4 +279,15 @@ const Work = styled(User)`
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(signOutAPI()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+//export default Header;

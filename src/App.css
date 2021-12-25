@@ -5,18 +5,7 @@
   font-family: "Nunito", sans-serif;
 }
 
-button {
-  border: none;
-  outline: none;
-  width: 100%;
-  padding: 15px 0;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 1px;
-  background: #3bbb5b;
-  cursor: pointer;
-  border-radius: 25px;
-}
+
 
 .login {
   width: 100%;
@@ -24,7 +13,7 @@ button {
   padding: 0 20px;
   background: #e9e9e9;
   display: flex;
-  background-image: linear-gradient(to top right, #000008, #0008), url(images/telo.jpg);
+  background-image: linear-gradient(to top right, #000008, #0008), url("assets/recherche-emplois.jpg");
 }
 
 .login .loginContainer {
@@ -37,13 +26,13 @@ button {
   flex-direction: column;
   justify-content: center;
   background-image: linear-gradient(to top left, #000008, #0008),
-	url("images/wave.png");
+	url("assets/wave.png");
   
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
-.login .loginContainer a img{
+/*.login .loginContainer a img{
   height: 100px;
-}
+}*/
 .login .loginContainer h2{
 	margin: 15px 0;
 	color: #fff;
@@ -99,11 +88,25 @@ button {
 .login .loginContainer .btnContainer p span:hover {
   color: red;
 }
+.login .loginContainer .btnContainer button {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 15px 0;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  background: #3bbb5b;
+  cursor: pointer;
+  border-radius: 25px;
+}
 
 .login .loginContainer .errorMsg {
   color: red;
   font-size: 16px;
 }
+
+
 
 /*.homePage {
   width: 100%;
